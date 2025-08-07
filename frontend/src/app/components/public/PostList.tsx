@@ -3,34 +3,36 @@
 import { useState, useEffect } from "react";
 import { Post } from "@/types";
 import { PostCard } from "./PostCard";
+import { mockPosts } from "@/mock/mockPosts";
 
 interface PostListProps {
   limit?: number;
 }
 
 export function PostList({ limit }: PostListProps) {
-  const [posts, setPosts] = useState<Post[]>([]);
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    const fetchPosts = async () => {
-      try {
-        const response = await fetch(
-          `/api/posts${limit ? `?limit=${limit}` : ""}`
-        );
-        if (response.ok) {
-          const data = await response.json();
-          setPosts(data.posts);
-        }
-      } catch (error) {
-        console.error("Failed to fetch posts:", error);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchPosts();
-  }, [limit]);
+  // const [posts, setPosts] = useState<Post[]>([]);
+  // const [loading, setLoading] = useState(true);
+  //
+  // useEffect(() => {
+  //   const fetchPosts = async () => {
+  //     try {
+  //       const response = await fetch(
+  //         `/api/posts${limit ? `?limit=${limit}` : ""}`
+  //       );
+  //       if (response.ok) {
+  //         const data = await response.json();
+  //         setPosts(data.posts);
+  //       }
+  //     } catch (error) {
+  //       console.error("Failed to fetch posts:", error);
+  //     } finally {
+  //       setLoading(false);
+  //     }
+  //   };
+  //   fetchPosts();
+  // }, [limit]);
+  const posts = limit ? mockPosts.slice(0, limit) : mockPosts;
+  const loading = false;
 
   if (loading) {
     return (

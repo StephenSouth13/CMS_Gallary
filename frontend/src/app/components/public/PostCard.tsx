@@ -11,6 +11,13 @@ interface PostCardProps {
 export function PostCard({ post }: PostCardProps) {
   return (
     <Card className="hover:shadow-lg transition-shadow">
+      {post.image && (
+        <img
+          src={post.image}
+          alt={post.title}
+          className="w-full h-48 object-cover rounded-t"
+        />
+      )}
       <CardHeader>
         <div className="flex flex-wrap gap-1 mb-2">
           {post.tags.slice(0, 2).map((tag) => (

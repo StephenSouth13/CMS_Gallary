@@ -21,6 +21,7 @@ export interface Post {
   publishedAt?: string
   comments: Comment[]
   tags: string[]
+  image?: string // Thêm trường ảnh đại diện
 }
 
 export interface Comment {
